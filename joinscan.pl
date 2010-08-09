@@ -10,6 +10,13 @@ $VERSION = "1.00";
 	license     => ''
 );
 
+sub cmd_help {
+	Irssi::print('%G>>%n Joinscan can be configured with these settings:');
+	Irssi::print('%G>>%n scan_watch    : This is the channel we watch.');
+	Irssi::print('%G>>%n scan_check    : These are the channels we look for.');
+	Irssi::print('%G>>%n scan_alert    : This is who we alert.');
+}
+
 sub event_join {
 	my ($server, $channel, $nick, $address) = @_;
 	my $watch = Irssi::settings_get_str('scan_watch');
@@ -42,6 +49,7 @@ sub event_whois {
 	}
 }
 
+Irssi::command_bind('joinscan', 'cmd_help');
 Irssi::signal_add('message join','event_join');
 Irssi::signal_add('redir whois','event_whois');
 
@@ -51,3 +59,5 @@ Irssi::settings_add_str($IRSSI{'name'}, 'scan_watch', '');
 Irssi::settings_add_str($IRSSI{'name'}, 'scan_check', '');
 # Who we're alerting
 Irssi::settings_add_str($IRSSI{'name'}, 'scan_alert', '');
+
+Irssi::print('%G>>%n '.$IRSSI{name}.' '.$VERSION.' loaded (/joinscan for help)');
