@@ -11,18 +11,18 @@ $VERSION = "1.00";
 );
 
 # Regex for the rules command
-Irssi::settings_add_str($IRSSI{'name'}, 'rules_keyword', '^!rules');
-Irssi::settings_add_str($IRSSI{'name'}, 'rules_url', '');
+Irssi::settings_add_str($IRSSI{'name'}, 'cs_rules_keyword', '^!rules');
+Irssi::settings_add_str($IRSSI{'name'}, 'cs_rules_url', '');
 
 sub sig_public {
 	#"message public", SERVER_REC, char *msg, char *nick, char *address, char *target
 	my ($server, $msg, $nick, $address, $target) = @_;
 	
 	# Make sure we have a keyword string
-	my $keyword = Irssi::settings_get_str('rules_keyword');
+	my $keyword = Irssi::settings_get_str('cs_rules_keyword');
 	return unless $keyword ne '';
 	
-	my $url = Irssi::settings_get_str('rules_url');
+	my $url = Irssi::settings_get_str('cs_rules_url');
 	# Doesn't make sense to continue if the URL is blank
 	return unless $url ne ''; 
 	
