@@ -10,6 +10,8 @@ $VERSION = "1.00";
 	license     => ''
 );
 
+# The channel we're watching
+Irssi::settings_add_str($IRSSI{'name'}, 'cs_watch', '');
 # Regex for the rules command
 Irssi::settings_add_str($IRSSI{'name'}, 'cs_rules_keyword', '^!rules');
 Irssi::settings_add_str($IRSSI{'name'}, 'cs_rules_url', '');
